@@ -1,10 +1,7 @@
 from datetime import datetime, date
 from collections import defaultdict
 
-users = [{"name": "Bill Gates", "birthday": datetime(1955, 10, 4).date()},
-         {"name": "Ivcan df", "birthday": datetime(1955, 10, 2).date()},
-         {"name": "Bdfdf", "birthday": datetime(1955, 10, 2).date()}]
-def get_birthdays_per_week(users:list):
+def get_birthdays_per_week(users) -> dict:
     today = date.today()
     dict_birthday = defaultdict(list)
 
@@ -26,7 +23,16 @@ def get_birthdays_per_week(users:list):
             else:
                 day = datetime.strftime(value_day, '%A')
                 dict_birthday[day].append(value_name)
-
     return dict_birthday
 
-print(get_birthdays_per_week(users))
+
+if __name__ == "__main__":
+    users = [
+        {"name": "Jan Koum", "birthday": datetime(1976, 1, 1).date()},
+    ]
+
+    result = get_birthdays_per_week(users)
+    print(result)
+    # Виводимо результат
+    for day_name, names in result.items():
+        print(f"{day_name}: {', '.join(names)}")
